@@ -4,14 +4,12 @@ import http from 'http';
 import cors from 'cors';
 import quoteRoutes from './routes/quoteRoutes';
 import { Server } from 'socket.io';
-import { PrismaClient } from '@prisma/client';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 8080;
-
-const prisma = new PrismaClient();
+const baseUrl = process.env.BASE_URL || 'localhost'
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -47,7 +45,7 @@ process.on('SIGINT', async () => {
 });
 
 server.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+  console.log(`[server]: Server is running at http://${baseUrl}:${port}`);
 });
 
 export { io };
