@@ -18,13 +18,13 @@ export const createQuote = async (req: Request, res: Response) => {
         status,
       },
     });
-    const template = await fs.readFileSync(
-      path.resolve(__dirname, "../template/quote_client.html")
-    );
+    // const template = await fs.readFileSync(
+    //   path.resolve(__dirname, "../template/quote_client.html")
+    // );
 
-    const body = template
-      .toString()
-      .replace("{link}", `${process.env.CLIENT_PUBLIC_BASE_URL}/quote/${newQuote.id}`);
+    // const body = template
+    //   .toString()
+    //   .replace("{link}", `${process.env.CLIENT_PUBLIC_BASE_URL}/quote/${newQuote.id}`);
     // await sendEmail(recipientEmail, 'New Quote', body, true);
     res.status(201).json(newQuote);
   } catch (err) {
